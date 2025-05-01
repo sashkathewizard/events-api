@@ -3,6 +3,7 @@ import { AppModule } from './app.module';
 import { ConfigService } from '@nestjs/config';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
+import { AdminSeeder } from './database/seeders/admin.seeder';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -11,6 +12,13 @@ async function bootstrap() {
   const port = configService.get<number>('PORT');
 
   app.useGlobalPipes(new ValidationPipe());
+
+  try {
+    const adminSeeder = app.get(AdminSeeder);
+    await adminSeeder.seed();
+  } catch (error) {
+    console.error('Seeded Admin already created:', error);
+  }
 
   const config = new DocumentBuilder()
     .setTitle('Todo API')
