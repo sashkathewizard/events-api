@@ -1,0 +1,18 @@
+model User {
+  id                    String        @id @default(uuid())
+  email                 String        @unique
+  name                  String        @unique
+  password              String
+  role      Role     @default(USER)
+  createdEvents         Event[]       @relation("EventCreator")
+  participatingEvents   Participant[]
+  createdAt             DateTime      @default(now())
+  updatedAt             DateTime      @updatedAt
+
+  @@map("users")
+}
+
+enum Role {
+  ADMIN
+  USER
+}
