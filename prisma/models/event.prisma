@@ -9,6 +9,7 @@ model Participant {
 
   @@unique([userId, eventId])
   @@map("participants")
+  @@index([eventId])
 }
 
 model Event {
@@ -25,4 +26,5 @@ model Event {
   updatedAt       DateTime      @updatedAt
 
   @@map("events")
+  @@index([creatorId])
 }
