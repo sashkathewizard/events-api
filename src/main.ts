@@ -21,8 +21,8 @@ async function bootstrap() {
   }
 
   const config = new DocumentBuilder()
-    .setTitle('Todo API')
-    .setDescription('Task management API')
+    .setTitle('Event API')
+    .setDescription('Event management API')
     .setVersion('1.0')
     .addBearerAuth()
     .build();

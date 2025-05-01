@@ -19,10 +19,10 @@ COPY prisma /app/prisma
 # Copy the rest of the application code to the working directory
 COPY . .
 
-RUN npx prisma generate
+RUN npx prisma generate --schema ./prisma
 
 # Build the application
 RUN npm run build
 
 # Run Prisma generate, apply migrations, and then start the application
-CMD ["sh", "-c", "npx prisma generate && npx prisma migrate dev && npm start"]
+CMD ["sh", "-c", "npx prisma generate --schema ./prisma && npx prisma migrate dev --schema ./prisma && npm start"]

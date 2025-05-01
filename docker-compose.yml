@@ -6,7 +6,7 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - DATABASE_URL=postgresql://postgres:postgres@db:5432/todo_db
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/event_db
       - JWT_SECRET=your-secret-key
       - JWT_EXPIRATION=1d
       - ADMIN_EMAIL=admin@example.com
@@ -22,7 +22,7 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=todo_db
+      - POSTGRES_DB=event_db
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
